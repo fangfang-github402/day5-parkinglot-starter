@@ -76,6 +76,22 @@ public class ParkingBoyMultipleParkingLotsTest {
         assert (car.equals(secondFetchedCar));
     }
 
+    @Test
+    void should_return_nothing_with_error_msg_when_fetch_given_two_parking_lot_and_an_unrecognized_ticket(){
+        //Given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        parkingBoy.addParkingLot(firstParkingLot);
+        parkingBoy.addParkingLot(secondParkingLot);
+        Car car = new Car();
+        parkingBoy.park(car);
+        Ticket unrecognizedTicket = new Ticket();
+        //When
+        //Then
+        assertThrows(UnrecognizedParkingTicketException.class,()->parkingBoy.fetch(unrecognizedTicket));
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
