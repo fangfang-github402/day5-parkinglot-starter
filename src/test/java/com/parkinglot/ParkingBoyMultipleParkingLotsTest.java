@@ -30,8 +30,28 @@ public class ParkingBoyMultipleParkingLotsTest {
         Ticket ticket = parkingBoy.park(car);
         //Then
         assertNotNull(ticket);
-        Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:01");
+        Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:1");
      }
+     
+     @Test
+     void should_return_a_ticket_and_msg_with_secondParkingLot_when_park_given_first_is_full_and_second_with_available_position(){
+         //Given
+         ParkingBoy parkingBoy =new ParkingBoy();
+         ParkingLot firstParkingLot = new ParkingLot();
+         ParkingLot secondParkingLot = new ParkingLot();
+         parkingBoy.addParkingLot(firstParkingLot);
+         parkingBoy.addParkingLot(secondParkingLot);
+         for (int i = 0; i < 10; i++) {
+             parkingBoy.park(new Car());
+         }
+         Car car =new Car();
+         //When
+         Ticket ticket = parkingBoy.park(car);
+         //Then
+         assertNotNull(ticket);
+         Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:2");
+      }
+     
 
     private String systemOut() {
         return outContent.toString();
