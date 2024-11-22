@@ -68,4 +68,17 @@ public class ParkingBoyTest {
         //Then
         assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(ticket));
     }
+
+    @Test
+    void should_with_error_msg_when_park_given_without_any_position() {
+        //Given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        for (int i = 0; i < 10; i++) {
+            parkingBoy.park(new Car());
+        }
+        Car car = new Car();
+        //When
+        //Then
+        assertThrows(NoAvailablePositionExpection.class,()->parkingBoy.park(car));
+    }
 }
