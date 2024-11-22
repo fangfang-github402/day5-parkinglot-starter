@@ -1,14 +1,24 @@
 package com.parkinglot;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setup() {
+        System.setOut(new PrintStream(outContent));
+    }
+
     @Test
     void should_return_ticket_when_park_given_a_car() {
         //Given
@@ -49,34 +59,41 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nothing_when_fetch_given_a_wrong_parking_ticket() {
+    void should_with_error_msg_when_fetch_given_an_unrecognized_ticket() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
         parkingLot.park(car);
-        Ticket wrongTicket = new Ticket();
+        Ticket unrecognizedTicket = new Ticket();
         //When
-        Car fetchedCar = parkingLot.fetch(wrongTicket);
+        try {
+            parkingLot.fetch(unrecognizedTicket);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //Then
-        assertNull(fetchedCar);
+        assertThat(systemOut()).contains("Unrecognized parking ticket");
     }
 
-
     @Test
-    void should_return_nothing_when_fetch_given_a_used_parking_ticket() {
+    void should_with_error_msg_when_fetch_given_a_used_ticket() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
         parkingLot.fetch(ticket);
         //When
-        Car fetchedCar = parkingLot.fetch(ticket);
+        try {
+            parkingLot.fetch(ticket);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //Then
-        assertNull(fetchedCar);
+        assertThat(systemOut()).contains("Unrecognized parking ticket");
     }
 
     @Test
-    void should_return_nothing_when_park_given_without_any_position() {
+    void should_with_error_msg_when_park_given_without_any_position() {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         for (int i = 0; i < 10; i++) {
@@ -84,9 +101,16 @@ public class ParkingLotTest {
         }
         Car car = new Car();
         //When
-        Ticket ticket = parkingLot.park(car);
+        try {
+            parkingLot.park(car);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //Then
-        assertNull(ticket);
+        assertThat(systemOut()).contains("No available position");
     }
 
+    private String systemOut() {
+        return outContent.toString();
+    }
 }
