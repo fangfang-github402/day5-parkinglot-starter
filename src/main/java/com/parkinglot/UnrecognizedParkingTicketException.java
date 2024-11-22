@@ -1,7 +1,9 @@
 package com.parkinglot;
 
 public class UnrecognizedParkingTicketException extends RuntimeException{
-    public UnrecognizedParkingTicketException(String msg){
-        super(msg);
+
+    public static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket";
+    public UnrecognizedParkingTicketException(){
+        super(UNRECOGNIZED_PARKING_TICKET);
     }
 }
