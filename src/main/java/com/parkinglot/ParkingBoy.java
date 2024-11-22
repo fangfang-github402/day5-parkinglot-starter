@@ -12,22 +12,30 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        String exceptionMsg = null;
+        String parkingExceptionMsg = null;
         for (int i = 0; i < parkingLots.size(); i++) {
             try {
                 Ticket ticket = parkingLots.get(i).park(car);
                 System.out.println("The car has parked in ParkingLot:" + (i + 1));
                 return ticket;
             } catch (Exception e) {
-                exceptionMsg = e.getMessage();
+                parkingExceptionMsg = e.getMessage();
             }
         }
-        System.out.println(exceptionMsg);
-        return null;
+        throw new NoAvailablePositionExpection(parkingExceptionMsg);
     }
 
     public Car fetch(Ticket ticket) {
-        return parkingLot.fetch(ticket);
+        String fetchingExceptionMsg = null;
+        for (int i = 0; i < parkingLots.size(); i++) {
+            try {
+                Car car = parkingLots.get(i).fetch(ticket);
+                return car;
+            } catch (Exception e) {
+                fetchingExceptionMsg = e.getMessage();
+            }
+        }
+        throw new UnrecognizedParkingTicketException(fetchingExceptionMsg);
     }
 
     public void addParkingLot(ParkingLot parkingLot) {
