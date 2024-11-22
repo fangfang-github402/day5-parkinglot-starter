@@ -77,7 +77,7 @@ public class ParkingBoyMultipleParkingLotsTest {
     }
 
     @Test
-    void should_return_nothing_with_error_msg_when_fetch_given_two_parking_lot_and_an_unrecognized_ticket(){
+    void should_return_nothing_with_error_msg_when_fetch_given_two_parking_lot_and_an_unrecognized_ticket() {
         //Given
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot firstParkingLot = new ParkingLot();
@@ -89,11 +89,11 @@ public class ParkingBoyMultipleParkingLotsTest {
         Ticket unrecognizedTicket = new Ticket();
         //When
         //Then
-        assertThrows(UnrecognizedParkingTicketException.class,()->parkingBoy.fetch(unrecognizedTicket));
+        assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(unrecognizedTicket));
     }
 
     @Test
-    void should_with_error_msg_when_fetch_given_two_parking_lot_and_a_used_ticket(){
+    void should_with_error_msg_when_fetch_given_two_parking_lot_and_a_used_ticket() {
         //Given
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot firstParkingLot = new ParkingLot();
@@ -106,7 +106,7 @@ public class ParkingBoyMultipleParkingLotsTest {
         //When
         //Then
         assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(ticket));
-     }
+    }
 
     @Test
     void should_with_error_msg_when_park_given_two_parking_lot_and_without_any_position() {
@@ -122,7 +122,7 @@ public class ParkingBoyMultipleParkingLotsTest {
         Car car = new Car();
         //When
         //Then
-        assertThrows(NoAvailablePositionExpection.class,()->parkingBoy.park(car));
+        assertThrows(NoAvailablePositionExpection.class, () -> parkingBoy.park(car));
     }
 
     private String systemOut() {
