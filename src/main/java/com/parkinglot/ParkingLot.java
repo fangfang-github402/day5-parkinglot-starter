@@ -8,12 +8,15 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
-        parkingRecords.put(ticket, car);
-        return ticket;
+        if (parkingRecords.size() < 10) {
+            parkingRecords.put(ticket, car);
+            return ticket;
+        }
+        return null;
     }
 
     public Car fetch(Ticket ticket) {
-        Car fetchedCar = parkingRecords.getOrDefault(ticket,null);
+        Car fetchedCar = parkingRecords.getOrDefault(ticket, null);
         parkingRecords.remove(ticket);
         return fetchedCar;
     }
