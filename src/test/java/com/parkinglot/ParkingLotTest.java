@@ -50,7 +50,7 @@ public class ParkingLotTest {
         //Given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
+        parkingLot.park(car);
         Ticket wrongTicket = new Ticket();
         //When
         Car fetchedCar = parkingLot.fetch(wrongTicket);
