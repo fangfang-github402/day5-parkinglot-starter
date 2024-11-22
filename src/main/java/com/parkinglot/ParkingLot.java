@@ -15,13 +15,13 @@ public class ParkingLot {
             parkingRecords.put(ticket, car);
             return ticket;
         }
-        throw new RuntimeException(NO_AVAILABLE_POSITION);
+        throw new NoAvailablePositionExpection(NO_AVAILABLE_POSITION);
     }
 
     public Car fetch(Ticket ticket) {
         Car fetchedCar = parkingRecords.getOrDefault(ticket, null);
         if (fetchedCar == null)
-            throw new RuntimeException(UNRECOGNIZED_PARKING_TICKET);
+            throw new UnrecognizedParkingTicketException(UNRECOGNIZED_PARKING_TICKET);
         parkingRecords.remove(ticket);
         return fetchedCar;
     }
