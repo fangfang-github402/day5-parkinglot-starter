@@ -57,5 +57,15 @@ public class ParkingBoyTest {
         assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(unrecognizedTicket));
     }
 
-
+    @Test
+    void should_with_error_msg_when_fetch_given_a_used_ticket() {
+        //Given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        parkingBoy.fetch(ticket);
+        //When
+        //Then
+        assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.fetch(ticket));
+    }
 }
