@@ -31,6 +31,24 @@ public class SmartParkingBoyTest {
         assertNotNull(ticket);
         Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:1");
      }
+    
+     @Test
+     void should_in_second_parking_lot_when_park_given_second_one_has_more_empty_positions(){
+         //Given
+         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
+         ParkingLot firstParkingLot = new ParkingLot();
+         ParkingLot secondParkingLot = new ParkingLot();
+         smartParkingBoy.addParkingLot(firstParkingLot);
+         smartParkingBoy.addParkingLot(secondParkingLot);
+         smartParkingBoy.park(new Car());
+         Car car = new Car();
+         //When
+         Ticket ticket = smartParkingBoy.park(car);
+         //Then
+         assertNotNull(ticket);
+         Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:2");
+      }
+
 
     private String systemOut() {
         return outContent.toString();
