@@ -23,4 +23,8 @@ public class ParkingLot {
         parkingRecords.remove(ticket);
         return fetchedCar;
     }
+
+    public int getNumberOfEmptyPositions(){
+        return MAX_CAPACITY - parkingRecords.size();
+    }
 }
