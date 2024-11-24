@@ -51,6 +51,26 @@ public class SuperParkingBoyTest {
         Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:2");
     }
 
+    @Test
+    void should_return_right_car_when_fetch_given_a_parked_car_and_two_parking_tickets() {
+        //Given
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        superParkingBoy.addParkingLot(firstParkingLot);
+        superParkingBoy.addParkingLot(secondParkingLot);
+        Car car = new Car();
+        Ticket firstTicket = superParkingBoy.park(car);
+        Car firstFetchedCar = superParkingBoy.fetch(firstTicket);
+        superParkingBoy.park(new Car());
+        Ticket secondTicket = superParkingBoy.park(car);
+        Car secondFetchedCar = superParkingBoy.fetch(secondTicket);
+        //When
+        //Then
+        assert (car.equals(firstFetchedCar));
+        assert (car.equals(secondFetchedCar));
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
