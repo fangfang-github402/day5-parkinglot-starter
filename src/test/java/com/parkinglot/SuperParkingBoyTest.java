@@ -1,7 +1,6 @@
 package com.parkinglot;
 
 import org.assertj.core.api.Assertions;
-import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.Super;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,5 @@
 package com.parkinglot;
 
-import java.util.Comparator;
-
 public class SuperParkingBoy extends ParkingBoy {
 
     @Override
