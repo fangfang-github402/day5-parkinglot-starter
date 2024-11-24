@@ -10,7 +10,7 @@ public class SuperParkingBoy extends ParkingBoy {
         if (parkingLot == null) {
             throw new NoAvailablePositionExpection();
         }
-        System.out.println("The car has parked in ParkingLot:" + (parkingLots.indexOf(parkingLot) + 1));
+        System.out.println("The car:" + car.getId() + " has parked in ParkingLot:" + (parkingLots.indexOf(parkingLot) + 1));
         Ticket ticket = parkingLot.park(car);
         return ticket;
     }

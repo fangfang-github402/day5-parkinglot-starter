@@ -15,7 +15,7 @@ public class ParkingBoy {
         for (int i = 0; i < parkingLots.size(); i++) {
             try {
                 Ticket ticket = parkingLots.get(i).park(car);
-                System.out.println("The car has parked in ParkingLot:" + (i + 1));
+                System.out.println("The car:" + car.getId() + " has parked in ParkingLot:" + (i + 1));
                 return ticket;
             } catch (Exception e) {
             }

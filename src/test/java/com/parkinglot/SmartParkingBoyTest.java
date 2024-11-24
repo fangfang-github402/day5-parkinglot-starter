@@ -26,12 +26,12 @@ public class SmartParkingBoyTest {
         ParkingLot secondParkingLot = new ParkingLot();
         smartParkingBoy.addParkingLot(firstParkingLot);
         smartParkingBoy.addParkingLot(secondParkingLot);
-        Car car = new Car();
+        Car car = new Car(3);
         //When
         Ticket ticket = smartParkingBoy.park(car);
         //Then
         assertNotNull(ticket);
-        Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:1");
+        Assertions.assertThat(systemOut()).contains("The car:3 has parked in ParkingLot:1");
     }
 
     @Test
@@ -43,12 +43,12 @@ public class SmartParkingBoyTest {
         smartParkingBoy.addParkingLot(firstParkingLot);
         smartParkingBoy.addParkingLot(secondParkingLot);
         smartParkingBoy.park(new Car());
-        Car car = new Car();
+        Car car = new Car(4);
         //When
         Ticket ticket = smartParkingBoy.park(car);
         //Then
         assertNotNull(ticket);
-        Assertions.assertThat(systemOut()).contains("The car has parked in ParkingLot:2");
+        Assertions.assertThat(systemOut()).contains("The car:4 has parked in ParkingLot:2");
     }
 
     @Test
