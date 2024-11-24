@@ -29,6 +29,6 @@ public class ParkingLot {
     }
 
     public double getAvailablePositionRate (){
-        return getNumberOfEmptyPositions() / MAX_CAPACITY;
+        return (double) getNumberOfEmptyPositions() / MAX_CAPACITY;
     }
 }
