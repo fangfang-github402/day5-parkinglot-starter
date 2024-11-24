@@ -104,6 +104,23 @@ public class SuperParkingBoyTest {
         assertThrows(UnrecognizedParkingTicketException.class, () -> superParkingBoy.fetch(ticket));
     }
 
+    @Test
+    void should_with_error_msg_when_park_given_two_parking_lot_and_without_any_position() {
+        //Given
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        superParkingBoy.addParkingLot(firstParkingLot);
+        superParkingBoy.addParkingLot(secondParkingLot);
+        for (int i = 0; i < 20; i++) {
+            superParkingBoy.park(new Car());
+        }
+        Car car = new Car();
+        //When
+        //Then
+        assertThrows(NoAvailablePositionExpection.class, () -> superParkingBoy.park(car));
+    }
+
     private String systemOut() {
         return outContent.toString();
     }
