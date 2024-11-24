@@ -11,7 +11,6 @@ public class SmartParkingBoyStrategy implements ParkStrategy {
             throw new NoAvailablePositionExpection();
         }
         System.out.println("The car:" + car.getId() + " has parked in ParkingLot:" + (parkingLots.indexOf(parkingLot) + 1));
-        Ticket ticket = parkingLot.park(car);
-        return ticket;
+        return parkingLot.park(car);
     }
 }
