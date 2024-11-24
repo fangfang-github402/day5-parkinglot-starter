@@ -24,11 +24,11 @@ public class ParkingLot {
         return fetchedCar;
     }
 
-    public int getNumberOfEmptyPositions(){
+    public int getNumberOfEmptyPositions() {
         return MAX_CAPACITY - parkingRecords.size();
     }
 
-    public double getAvailablePositionRate (){
+    public double getAvailablePositionRate() {
         return (double) getNumberOfEmptyPositions() / MAX_CAPACITY;
     }
 }

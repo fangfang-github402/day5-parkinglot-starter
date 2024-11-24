@@ -85,6 +85,6 @@ public class ParkingBoyTest {
         Car car = new Car();
         //When
         //Then
-        assertThrows(NoAvailablePositionExpection.class,()->parkingBoy.park(car));
+        assertThrows(NoAvailablePositionExpection.class, () -> parkingBoy.park(car));
     }
 }

@@ -92,7 +92,7 @@ public class ParkingLotTest {
         Car car = new Car();
         //When
         //Then
-        assertThrows(NoAvailablePositionExpection.class,()->parkingLot.park(car));
+        assertThrows(NoAvailablePositionExpection.class, () -> parkingLot.park(car));
     }
 
     private String systemOut() {
