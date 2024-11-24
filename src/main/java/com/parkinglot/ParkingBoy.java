@@ -12,15 +12,8 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
-        for (int i = 0; i < parkingLots.size(); i++) {
-            try {
-                Ticket ticket = parkingLots.get(i).park(car);
-                System.out.println("The car:" + car.getId() + " has parked in ParkingLot:" + (i + 1));
-                return ticket;
-            } catch (Exception e) {
-            }
-        }
-        throw new NoAvailablePositionExpection();
+        ParkStrategyContext parkStrategyContext = new ParkStrategyContext(new ParkingBoyStrategy());
+        return parkStrategyContext.executeStrategy(parkingLots, car);
     }
 
     public Car fetch(Ticket ticket) {
