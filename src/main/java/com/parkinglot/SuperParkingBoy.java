@@ -7,5 +7,4 @@ public class SuperParkingBoy extends ParkingBoy {
         ParkStrategyContext parkStrategyContext = new ParkStrategyContext(new SuperParkingBoyStrategy());
         return parkStrategyContext.executeStrategy(parkingLots, car);
     }
-
 }
