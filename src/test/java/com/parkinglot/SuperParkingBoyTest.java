@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SuperParkingBoyTest {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -69,6 +70,22 @@ public class SuperParkingBoyTest {
         //Then
         assert (car.equals(firstFetchedCar));
         assert (car.equals(secondFetchedCar));
+    }
+
+    @Test
+    void should_return_nothing_with_error_msg_when_fetch_given_two_parking_lot_and_an_unrecognized_ticket() {
+        //Given
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        superParkingBoy.addParkingLot(firstParkingLot);
+        superParkingBoy.addParkingLot(secondParkingLot);
+        Car car = new Car();
+        superParkingBoy.park(car);
+        Ticket unrecognizedTicket = new Ticket();
+        //When
+        //Then
+        assertThrows(UnrecognizedParkingTicketException.class, () -> superParkingBoy.fetch(unrecognizedTicket));
     }
 
     private String systemOut() {
